@@ -1,0 +1,129 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.AbstractButton;
+import javax.swing.JButton;
+import javax.swing.JPanel;
+import javax.swing.JFrame;
+import javax.swing.ImageIcon;
+import javax.swing.SwingConstants;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+/**
+ * Write a description of class Pong here.
+ * 
+ * @author (your name) 
+ * @version (a version number or a date)
+ */
+public class Pong
+{
+    static int highScore = 0;
+    /**
+     * Constructor for objects of class Pong
+     */
+    public Pong()
+    {
+        createAndShowGUI();
+    }
+    /**
+     * Create the GUI and show it.  For thread safety,
+     * this method should be invoked from the
+     * event-dispatching thread.
+     */
+    public static void createAndShowGUI() {
+        final JFrame frame = new JFrame();
+        String strHighScore = highScore+"";
+        //JPanel
+        JPanel pnlButton = new JPanel();
+        
+        //Buttons
+        JButton instructions = new JButton("Instructions");
+        instructions.addActionListener( new ActionListener()
+        {
+            public void actionPerformed(ActionEvent e)
+            {
+                printInstructions x = new printInstructions();
+                x.printInstructions();
+                frame.setVisible(false);
+            }
+        });        
+        JButton playGame = new JButton("Play Game");
+        playGame.addActionListener( new ActionListener()
+        {
+            public void actionPerformed(ActionEvent e)
+            {
+                makePaddle();
+                frame.setVisible(false);
+            }
+        });   
+        JButton exit = new JButton("Exit");
+        exit.addActionListener( new ActionListener()
+        {
+            public void actionPerformed(ActionEvent e)
+            {
+                System.exit(0);
+            }
+        });
+        
+        //Labels
+        JLabel lblHiScore = new JLabel(strHighScore, JLabel.CENTER);
+        lblHiScore.setForeground(Color.WHITE);
+        JLabel lblHighScore = new JLabel("High Score:",JLabel.CENTER);
+        lblHighScore.setForeground(Color.WHITE);
+        JLabel title = new JLabel("PONG",JLabel.CENTER);
+        title.setForeground(Color.WHITE);
+        title.setFont(new Font("Courier New",Font.ITALIC,50));
+        
+        pnlButton.setLayout(null);
+        
+        //Setbounds
+        lblHighScore.setBounds(225,400,150,30);
+        lblHiScore.setBounds(225,440,150,30);
+        title.setBounds(200,100,200,100);
+        instructions.setBounds(325, 250, 150,30);
+        playGame.setBounds(125, 250, 150, 30);
+        exit.setBounds(225,300,150,30);
+        
+        //JPanel bounds
+        pnlButton.setBackground(Color.BLACK);
+        pnlButton.setBounds(0, 0, 600, 600);
+   
+        //Adding to JFrame
+        pnlButton.add(lblHighScore);
+        pnlButton.add(lblHiScore);
+        pnlButton.add(title);
+        pnlButton.add(instructions);
+        pnlButton.add(playGame);
+        pnlButton.add(exit);
+        frame.add(pnlButton);
+    
+        // JFrame properties
+        frame.setSize(600, 600);
+        frame.setBackground(Color.BLACK);
+        frame.setTitle("Pong");
+        frame.setLocationRelativeTo(null);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setVisible(true);
+    }
+    public static void makePaddle()
+    {
+        JFrame frame = new JFrame();
+        
+        JLabel pause = new JLabel("Press P to Pause",JLabel.CENTER);
+        pause.setForeground(Color.BLACK);
+        frame.getContentPane().add(pause);
+        
+        Paddle x = new Paddle(frame);
+        frame.add(x);
+        // JFrame properties
+        frame.setSize(600, 600);
+        frame.setBackground(Color.BLACK);
+        frame.setTitle("Pong");
+        frame.setLocationRelativeTo(null);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setVisible(true);
+    }
+
+}
+//HI koboooooooooooooooooooooooooooooooooooooooooooooooo
